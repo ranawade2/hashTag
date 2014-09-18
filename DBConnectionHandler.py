@@ -17,41 +17,34 @@ db=None
 def startCon(hostname="",username="",password="",dbname="HashTagDB",autocommit=True,databaseType="sqlite3"):
 	global db
 	## MYSQL CONNECTION BLOCK ##																					#
-	try:
-
-		if databaseType == "mysql":
-			import MySQLdb
-			db = MySQLdb.connect(host=hostname,
-							user=username,
-							passwd=password,
-							db=dbname)
-			cur = db.cursor(MySQLdb.cursors.DictCursor)
-			db.autocommit(autocommit)
-			return cur
-	except:
-		return None
+	if databaseType == "mysql":
+		import MySQLdb
+		db = MySQLdb.connect(host=hostname,
+						user=username,
+						passwd=password,
+						db=dbname)
+		cur = db.cursor(MySQLdb.cursors.DictCursor)
+		db.autocommit(autocommit)
+		return cur
+	
 	## POSTGRESQL CONNECTION BLOCK ##																				#
-	try:
-		elif databaseType == "postgresql":
-			import psycopg2
-			db = MySQLdb.connect(host=hostname,
-							user=username,
-							password=password,
-							database=dbname)
-			cur = db.cursor(MySQLdb.cursors.DictCursor)
-			db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-			return cur
-	except:
-		return None
+	
+	elif databaseType == "postgresql":
+		import psycopg2
+		db = MySQLdb.connect(host=hostname,
+						user=username,
+						password=password,
+						database=dbname)
+		cur = db.cursor(MySQLdb.cursors.DictCursor)
+		db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+		return cur
 	## SQLITE 3 CONNECTION BLOCK ##																					#
-	try:
-		elif databaseType=="sqlite3":
-			import sqlite3
-			db = sqlite3.connect(dbname)
-			cur = db
-			return cur
-	except:
-		return None
+
+	elif databaseType=="sqlite3":
+		import sqlite3
+		db = sqlite3.connect(dbname)
+		cur = db.cursor()
+		return cur
 
 
 
