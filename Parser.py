@@ -25,7 +25,7 @@ def parse_data_tags(data, tags_string):
 
 #***************************************#
 
-def parse_tags(data_tags_string):
+def parse_tags1(data_tags_string):
 
 	# data_tags_string = "Hello World #tag1 #tag2 #tag3 #tag4 Welcome Harish"
 
@@ -44,9 +44,35 @@ def parse_tags(data_tags_string):
 
 #***************************************#
 
+def parse_tags2(data_tags_string):
+
+	# data_tags_string = "Hello World #tag1 #tag2 #tag3 #tag4 Welcome Harish"
+
+	tags = data_tags_string.split("#")
+
+	del tags[0]
+
+	tags = [tag.split(" ")[0] for tag in tags]
+
+	tags.sort()	
+
+	# for CSV
+	# tags_csv = ",".join(tags)
+
+	print tags
+
+	return tags
+
+#***************************************#
+
 parse_data_tags("ranawade2", "#java #cpp #py #php")
 
-parse_tags("Hello World #ase #face #slac #blr Welcome Harish")
+print 
 
+parse_tags1("Hello World #ase #face #slac #blr Welcome Harish")
+
+print
+
+parse_tags2("Hello World #ase #face #slac #blr Welcome Harish")
 
 
