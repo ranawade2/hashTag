@@ -11,20 +11,14 @@ def parse(tags_string):
 
 	tags = tags_string.split(" ")
 
-	tags_list = []
+	tags = [tag.split("#")[1] for tag in tags]
 
-	for tag in tags:
-		temp = tag.split("#")[1]
-
-		tags_list.append(temp);
-
-	# sort in alphabetical order
-	tags_list.sort()
+	tags.sort()	
 
 	# for CSV
-	# tags_csv = ",".join(tags_list)
+	# tags_csv = ",".join(tags)
 
-	return tags_list
+	return tags
 
 #***************************************#
 
